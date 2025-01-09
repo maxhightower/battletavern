@@ -9,7 +9,6 @@
     <link href="../css/character-modal.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Main Content -->
     <div class="container">
         <header>
             <h1>D&D 5E Encounter Simulator</h1>
@@ -26,7 +25,7 @@
                     <div id="character-list">
                         <!-- Character cards will be dynamically added here -->
                     </div>
-                    <button id="add-character" class="button primary">Add Character</button>
+                    <button id="add-character" class="button">Add Character</button>
                 </section>
 
                 <!-- Monster Selection Section -->
@@ -187,8 +186,11 @@
 
                         <div class="form-section">
                             <h3>Features & Traits</h3>
-                            <div id="features-container">
-                                <!-- Populated by JavaScript based on race/class selections -->
+                            <div id="racial-traits">
+                                <!-- Populated by JavaScript based on race selection -->
+                            </div>
+                            <div id="background-features">
+                                <!-- Populated by JavaScript based on background selection -->
                             </div>
                         </div>
                     </div>
@@ -201,3 +203,7 @@
             </form>
         </div>
     </div>
+
+    <script type="module" src="../js/simulator.js"></script>
+</body>
+</html>
