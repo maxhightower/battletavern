@@ -42,12 +42,12 @@ class Simulator {
         if (!this.monsterSelect) return;
 
         // Populate monster selection (placeholder)
-        const monsters = [
-            'Goblin',
-            'Orc',
-            'Dragon Wyrmling',
-            'Bugbear',
-            'Ogre'
+        const monsters = [ //this is for under CR 5 monsters
+            'Bandit',
+            'Flying Snake',
+            'Guard',
+            'Kobold',
+            'Goblin'
         ];
 
         monsters.forEach(monster => {
