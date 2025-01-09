@@ -1,7 +1,7 @@
 /* css/simulator.css */
 .simulator-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;  /* This ensures two equal columns */
     gap: 2rem;
     margin-bottom: 2rem;
 }
@@ -11,11 +11,23 @@
     border-radius: 10px;
     padding: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;  /* Ensure each section takes full width of its column */
 }
 
 .input-section h2 {
     color: var(--primary-color);
     margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+#character-list {
+    margin-bottom: 1rem;
+    min-height: 100px;  /* Give some height even when empty */
+}
+
+#selected-monsters {
+    margin-top: 1rem;
+    min-height: 100px;  /* Give some height even when empty */
 }
 
 .form-group {
@@ -66,11 +78,7 @@
     border-radius: 8px;
 }
 
-/* Character List Styles */
-#character-list {
-    margin-bottom: 1rem;
-}
-
+/* Character Card Styles */
 .character-card {
     background: white;
     border-radius: 8px;
@@ -88,7 +96,7 @@
 
 .character-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
@@ -98,6 +106,7 @@
     background: #f8f9fa;
     padding: 0.5rem;
     border-radius: 4px;
+    font-size: 0.9rem;
 }
 
 .character-actions {
@@ -106,21 +115,14 @@
 }
 
 /* Monster Selection Styles */
-#selected-monsters {
-    margin-top: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
 .monster-tag {
+    display: inline-flex;
+    align-items: center;
     background: var(--secondary-color);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    margin: 0.25rem;
 }
 
 .remove-monster {
@@ -128,7 +130,8 @@
     border: none;
     color: white;
     cursor: pointer;
-    padding: 0.25rem;
+    margin-left: 0.5rem;
+    padding: 0 0.25rem;
 }
 
 @media (max-width: 768px) {
@@ -137,11 +140,11 @@
         grid-template-columns: 1fr;
     }
 
-    .container {
-        padding: 1rem;
-    }
-    
     .character-stats {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .container {
+        padding: 1rem;
     }
 }
