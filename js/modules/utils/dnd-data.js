@@ -361,13 +361,13 @@ export const DND_DATA = {
         {
             name: 'Folk Hero',
             skillProficiencies: ['Animal Handling', 'Survival'],
-            toolProficiencies: ['One type of artisan's tools', 'Land vehicles'],
+            toolProficiencies: ["One type of artisan's tools", 'Land vehicles'],
             equipment: ["Set of artisan's tools", 'Shovel', 'Iron pot', 'Common clothes', 'Belt pouch with 10 gp']
         },
         {
             name: 'Guild Artisan',
             skillProficiencies: ['Insight', 'Persuasion'],
-            toolProficiencies: ['One type of artisan's tools'],
+            toolProficiencies: ["One type of artisan's tools"],
             languages: 1,
             equipment: ["One set of artisan's tools", 'Letter of introduction from your guild', 'Traveler's clothes', 'Belt pouch with 15 gp']
         },
@@ -383,7 +383,7 @@ export const DND_DATA = {
             skillProficiencies: ['Athletics', 'Survival'],
             toolProficiencies: ['One type of musical instrument'],
             languages: 1,
-            equipment: ['Staff', 'Hunting trap', 'Trophy from an animal', 'Traveler's clothes', 'Belt pouch with 10 gp']
+            equipment: ['Staff', 'Hunting trap', 'Trophy from an animal', "Traveler's clothes", 'Belt pouch with 10 gp']
         },
         {
             name: 'Sage',
@@ -394,7 +394,7 @@ export const DND_DATA = {
         {
             name: 'Sailor',
             skillProficiencies: ['Athletics', 'Perception'],
-            toolProficiencies: ['Navigator's tools', 'Water vehicles'],
+            toolProficiencies: ["Navigator's tools", 'Water vehicles'],
             equipment: ['Belaying pin (club)', 'Silk rope (50 feet)', 'Lucky charm', 'Common clothes', 'Belt pouch with 10 gp']
         },
         {
@@ -409,7 +409,7 @@ export const DND_DATA = {
             toolProficiencies: ['Disguise kit', "Thieves' tools"],
             equipment: ['Small knife', 'Map of your home city', 'Pet mouse', 'Token from your parents', 'Common clothes', 'Belt pouch with 10 gp']
         }
-    ],
+            ],
 
     skills: {
         'Strength': ['Athletics'],
