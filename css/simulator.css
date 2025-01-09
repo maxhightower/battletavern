@@ -1,111 +1,161 @@
-/* css/simulator.css */
-.simulator-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
+/* css/character-modal.css */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-.input-section {
-    background: var(--card-background);
+.modal-content {
+    background-color: white;
     border-radius: 10px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
 }
 
-.character-form {
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    position: sticky;
+    bottom: 0;
+    background: white;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+.form-section {
     margin-bottom: 2rem;
     padding: 1.5rem;
     background: #f8f9fa;
     border-radius: 8px;
 }
 
-.form-group {
+.form-section h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.ability-scores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.modifier {
+    display: inline-block;
+    margin-left: 0.5rem;
+    color: var(--secondary-color);
+}
+
+#weapons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.weapon-entry {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+#spell-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
     margin-bottom: 1rem;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--secondary-color);
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
+.spell-level {
+    padding: 1rem;
+    background: white;
     border-radius: 4px;
-    font-size: 1rem;
+    text-align: center;
 }
 
-.action-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin: 2rem 0;
-}
-
-.button.primary {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.button.secondary {
-    background-color: var(--secondary-color);
-    color: white;
-}
-
-.results-section {
-    background: var(--card-background);
-    border-radius: 10px;
-    padding: 2rem;
-    margin-top: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.results-grid {
+#spell-list {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
 }
 
-.result-card {
-    background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 8px;
+.spell-card {
+    padding: 0.5rem;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #ddd;
 }
 
 .hidden {
     display: none;
 }
 
-#selected-monsters {
-    margin-top: 1rem;
+/* Character Card Styles */
+.character-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.monster-tag {
-    display: inline-block;
-    background: var(--secondary-color);
-    color: white;
-    padding: 0.5rem 1rem;
+.character-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.character-card-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.character-stat {
+    text-align: center;
+    padding: 0.5rem;
+    background: #f8f9fa;
     border-radius: 4px;
-    margin: 0.5rem;
 }
 
-.monster-tag button {
-    background: none;
-    border: none;
-    color: white;
-    margin-left: 0.5rem;
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .simulator-grid,
-    .results-grid {
-        grid-template-columns: 1fr;
-    }
+.character-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
 }
