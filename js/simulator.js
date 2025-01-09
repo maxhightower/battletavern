@@ -1,6 +1,16 @@
 // js/simulator.js
 import { CharacterCreator } from './modules/character-creator.js';
 
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Initializing simulator...');
+    
+    // Initialize Character Creator
+    const characterCreator = new CharacterCreator();
+    
+    // Initialize Simulator
+    const simulator = new Simulator();
+});
+
 class Simulator {
     constructor() {
         this.monsterSelect = document.getElementById('monster-select');
@@ -9,20 +19,23 @@ class Simulator {
         this.resetForm = document.getElementById('reset-form');
         this.results = document.getElementById('results');
 
-        // Initialize character creator
-        this.characterCreator = new CharacterCreator();
-
         this.setupEventListeners();
         this.initializeMonsterList();
     }
 
     setupEventListeners() {
         // Monster selection
-        this.monsterSelect?.addEventListener('change', (e) => this.handleMonsterSelection(e));
+        if (this.monsterSelect) {
+            this.monsterSelect.addEventListener('change', (e) => this.handleMonsterSelection(e));
+        }
 
         // Simulation controls
-        this.runSimulation?.addEventListener('click', () => this.handleSimulation());
-        this.resetForm?.addEventListener('click', () => this.handleReset());
+        if (this.runSimulation) {
+            this.runSimulation.addEventListener('click', () => this.handleSimulation());
+        }
+        if (this.resetForm) {
+            this.resetForm.addEventListener('click', () => this.handleReset());
+        }
     }
 
     initializeMonsterList() {
@@ -95,8 +108,3 @@ class Simulator {
         }
     }
 }
-
-// Initialize simulator when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const simulator = new Simulator();
-});
