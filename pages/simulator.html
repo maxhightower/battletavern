@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encounter Simulator - Battle Tavern</title>
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/simulator.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>D&D 5E Encounter Simulator</h1>
+            <nav>
+                <a href="../index.html" class="button">Home</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="simulator-grid">
+                <!-- Character Input Section -->
+                <section class="input-section">
+                    <h2>Party Setup</h2>
+                    <div id="character-forms">
+                        <div class="character-form">
+                            <h3>Character 1</h3>
+                            <div class="form-group">
+                                <label for="char1-name">Name:</label>
+                                <input type="text" id="char1-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="char1-level">Level:</label>
+                                <input type="number" id="char1-level" min="1" max="20" value="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="char1-class">Class:</label>
+                                <select id="char1-class" required>
+                                    <option value="">Select Class</option>
+                                    <option value="barbarian">Barbarian</option>
+                                    <option value="bard">Bard</option>
+                                    <option value="cleric">Cleric</option>
+                                    <option value="druid">Druid</option>
+                                    <option value="fighter">Fighter</option>
+                                    <option value="monk">Monk</option>
+                                    <option value="paladin">Paladin</option>
+                                    <option value="ranger">Ranger</option>
+                                    <option value="rogue">Rogue</option>
+                                    <option value="sorcerer">Sorcerer</option>
+                                    <option value="warlock">Warlock</option>
+                                    <option value="wizard">Wizard</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="char1-hp">HP:</label>
+                                <input type="number" id="char1-hp" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="char1-ac">AC:</label>
+                                <input type="number" id="char1-ac" min="1" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="add-character" class="button">Add Another Character</button>
+                </section>
+
+                <!-- Monster Selection Section -->
+                <section class="input-section">
+                    <h2>Monster Selection</h2>
+                    <div class="form-group">
+                        <label for="monster-select">Choose Monster:</label>
+                        <select id="monster-select" required>
+                            <option value="">Select Monster</option>
+                            <!-- Will be populated via JavaScript -->
+                        </select>
+                    </div>
+                    <div id="selected-monsters">
+                        <!-- Selected monsters will appear here -->
+                    </div>
+                </section>
+            </div>
+
+            <div class="action-buttons">
+                <button id="run-simulation" class="button primary">Run Simulation</button>
+                <button id="reset-form" class="button secondary">Reset</button>
+            </div>
+
+            <!-- Results Section -->
+            <section id="results" class="results-section hidden">
+                <h2>Simulation Results</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Battle Statistics</h3>
+                        <div id="battle-stats"></div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Visualization</h3>
+                        <div id="battle-graph"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Battle Tavern - D&D 5E Combat Tools</p>
+        </footer>
+    </div>
+
+    <script src="../js/simulator.js"></script>
+</body>
+</html>
