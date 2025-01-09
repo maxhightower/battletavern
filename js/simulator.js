@@ -1,4 +1,5 @@
-// simulator.js
+// js/simulator.js
+import { CharacterCreator } from './modules/character-creator.js';
 
 class Simulator {
     constructor() {
@@ -8,25 +9,25 @@ class Simulator {
         this.resetForm = document.getElementById('reset-form');
         this.results = document.getElementById('results');
 
+        // Initialize character creator
+        this.characterCreator = new CharacterCreator();
+
         this.setupEventListeners();
         this.initializeMonsterList();
     }
 
     setupEventListeners() {
-        if (this.runSimulation) {
-            this.runSimulation.addEventListener('click', () => this.handleSimulation());
-        }
+        // Monster selection
+        this.monsterSelect?.addEventListener('change', (e) => this.handleMonsterSelection(e));
 
-        if (this.resetForm) {
-            this.resetForm.addEventListener('click', () => this.handleReset());
-        }
-
-        if (this.monsterSelect) {
-            this.monsterSelect.addEventListener('change', (e) => this.handleMonsterSelection(e));
-        }
+        // Simulation controls
+        this.runSimulation?.addEventListener('click', () => this.handleSimulation());
+        this.resetForm?.addEventListener('click', () => this.handleReset());
     }
 
     initializeMonsterList() {
+        if (!this.monsterSelect) return;
+
         // Populate monster selection (placeholder)
         const monsters = [
             'Goblin',
@@ -53,6 +54,8 @@ class Simulator {
     }
 
     addMonsterTag(monsterName) {
+        if (!this.selectedMonsters) return;
+
         const tag = document.createElement('div');
         tag.className = 'monster-tag';
         tag.innerHTML = `
@@ -68,15 +71,28 @@ class Simulator {
     }
 
     handleSimulation() {
-        // Placeholder for simulation logic
+        if (!this.results) return;
+
+        // Show results section
         this.results.classList.remove('hidden');
-        // Add simulation results display logic here
+
+        const battleStats = document.getElementById('battle-stats');
+        const battleGraph = document.getElementById('battle-graph');
+
+        if (battleStats && battleGraph) {
+            // Placeholder for simulation results
+            battleStats.innerHTML = '<p>Simulation results will appear here...</p>';
+            battleGraph.innerHTML = '<p>Battle visualization will appear here...</p>';
+        }
     }
 
     handleReset() {
-        this.selectedMonsters.innerHTML = '';
-        this.results.classList.add('hidden');
-        // Add any additional reset logic here
+        if (this.selectedMonsters) {
+            this.selectedMonsters.innerHTML = '';
+        }
+        if (this.results) {
+            this.results.classList.add('hidden');
+        }
     }
 }
 

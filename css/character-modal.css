@@ -32,15 +32,6 @@
     border-radius: 10px 10px 0 0;
 }
 
-.close-modal {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--secondary-color);
-    padding: 0.5rem;
-}
-
 .modal-body {
     padding: 1.5rem;
     overflow-y: auto;
@@ -123,27 +114,22 @@
     margin-bottom: 0.5rem;
 }
 
-.equipment-item {
-    background: white;
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+.weapon-selection {
     display: flex;
-    align-items: center;
     gap: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.spell-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 0.5rem;
+.weapon-selection select {
+    flex-grow: 1;
 }
 
-.spell-item {
-    background: white;
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--secondary-color);
 }
 
 .modal-footer {
@@ -154,6 +140,28 @@
     gap: 1rem;
     background: white;
     border-radius: 0 0 10px 10px;
+}
+
+#racial-traits,
+#background-features {
+    margin-top: 1rem;
+}
+
+.trait-item,
+.feature-item {
+    background: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.feature-section {
+    margin-top: 1rem;
+}
+
+.feature-section h5 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 1200px) {
