@@ -1,204 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encounter Simulator - Battle Tavern</title>
-    <link href="../css/styles.css" rel="stylesheet">
-    <link href="../css/simulator.css" rel="stylesheet">
-    <link href="../css/character-modal.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>D&D 5E Encounter Simulator</h1>
-            <nav>
-                <a href="../index.html" class="button">Home</a>
-            </nav>
-        </header>
-
-        <main>
-            <div class="simulator-grid">
-                <!-- Character Section -->
-                <section class="input-section">
-                    <h2>Party Setup</h2>
-                    <div id="character-list">
-                        <!-- Character cards will be dynamically added here -->
-                    </div>
-                    <button id="add-character" class="button primary">Add Another Character</button>
-                </section>
-
-                <!-- Monster Selection Section -->
-                <section class="input-section">
-                    <h2>Monster Selection</h2>
+<!-- Character Creation Modal -->
+<div id="character-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Create Character</h2>
+            <button class="close-modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+            <!-- Column 1: Basic Info & Abilities -->
+            <div class="form-column">
+                <div class="form-section">
+                    <h3>Basic Information</h3>
                     <div class="form-group">
-                        <label for="monster-select">Choose Monster:</label>
-                        <select id="monster-select" required>
-                            <option value="">Select Monster</option>
-                        </select>
+                        <label for="char-name">Character Name</label>
+                        <input type="text" id="char-name" required>
                     </div>
-                    <div id="selected-monsters"></div>
-                </section>
-            </div>
-
-            <div class="action-buttons">
-                <button id="run-simulation" class="button primary">Run Simulation</button>
-                <button id="reset-form" class="button secondary">Reset</button>
-            </div>
-
-            <section id="results" class="results-section hidden">
-                <h2>Simulation Results</h2>
-                <div class="results-grid">
-                    <div class="result-card">
-                        <h3>Battle Statistics</h3>
-                        <div id="battle-stats"></div>
+                    <div class="form-group">
+                        <label for="char-race">Race</label>
+                        <select id="char-race" required></select>
                     </div>
-                    <div class="result-card">
-                        <h3>Visualization</h3>
-                        <div id="battle-graph"></div>
+                    <div id="subrace-container" class="form-group hidden">
+                        <label for="char-subrace">Subrace</label>
+                        <select id="char-subrace"></select>
                     </div>
                 </div>
-            </section>
-        </main>
-    </div>
 
-    <!-- Character Creation Modal -->
-    <div id="character-modal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Create Character</h2>
-                <button class="close-modal">&times;</button>
+                <div class="form-section">
+                    <h3>Ability Scores</h3>
+                    <div class="ability-scores-grid">
+                        <div class="ability-score-box">
+                            <label for="strength">STR</label>
+                            <input type="number" id="strength" min="3" max="18" required>
+                            <span class="modifier"></span>
+                        </div>
+                        <div class="ability-score-box">
+                            <label for="dexterity">DEX</label>
+                            <input type="number" id="dexterity" min="3" max="18" required>
+                            <span class="modifier"></span>
+                        </div>
+                        <div class="ability-score-box">
+                            <label for="constitution">CON</label>
+                            <input type="number" id="constitution" min="3" max="18" required>
+                            <span class="modifier"></span>
+                        </div>
+                        <div class="ability-score-box">
+                            <label for="intelligence">INT</label>
+                            <input type="number" id="intelligence" min="3" max="18" required>
+                            <span class="modifier"></span>
+                        </div>
+                        <div class="ability-score-box">
+                            <label for="wisdom">WIS</label>
+                            <input type="number" id="wisdom" min="3" max="18" required>
+                            <span class="modifier"></span>
+                        </div>
+                        <div class="ability-score-box">
+                            <label for="charisma">CHA</label>
+                            <input type="number" id="charisma" min="3" max="18" required>
+                            <span class="modifier"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <form id="character-form">
-                    <!-- Basic Information -->
-                    <div class="form-section">
-                        <h3>Basic Information</h3>
-                        <div class="form-group">
-                            <label for="char-name">Character Name:</label>
-                            <input type="text" id="char-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="char-race">Race:</label>
-                            <select id="char-race" required>
-                                <option value="">Select Race</option>
-                                <!-- Races will be populated via JavaScript -->
-                            </select>
-                        </div>
-                        <div id="subrace-container" class="form-group hidden">
-                            <label for="char-subrace">Subrace:</label>
-                            <select id="char-subrace"></select>
-                        </div>
-                    </div>
 
-                    <!-- Ability Scores -->
-                    <div class="form-section">
-                        <h3>Ability Scores</h3>
-                        <div class="ability-scores-grid">
-                            <div class="form-group">
-                                <label for="strength">Strength:</label>
-                                <input type="number" id="strength" min="3" max="18" required>
-                                <span class="modifier"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="dexterity">Dexterity:</label>
-                                <input type="number" id="dexterity" min="3" max="18" required>
-                                <span class="modifier"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="constitution">Constitution:</label>
-                                <input type="number" id="constitution" min="3" max="18" required>
-                                <span class="modifier"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="intelligence">Intelligence:</label>
-                                <input type="number" id="intelligence" min="3" max="18" required>
-                                <span class="modifier"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="wisdom">Wisdom:</label>
-                                <input type="number" id="wisdom" min="3" max="18" required>
-                                <span class="modifier"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="charisma">Charisma:</label>
-                                <input type="number" id="charisma" min="3" max="18" required>
-                                <span class="modifier"></span>
-                            </div>
-                        </div>
+            <!-- Column 2: Class & Background -->
+            <div class="form-column">
+                <div class="form-section">
+                    <h3>Class Information</h3>
+                    <div class="form-group">
+                        <label for="char-class">Class</label>
+                        <select id="char-class" required></select>
                     </div>
+                    <div id="subclass-container" class="form-group hidden">
+                        <label for="char-subclass">Subclass</label>
+                        <select id="char-subclass"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="char-level">Level</label>
+                        <input type="number" id="char-level" min="1" max="20" value="1" required>
+                    </div>
+                </div>
 
-                    <!-- Class Selection -->
-                    <div class="form-section">
-                        <h3>Class Information</h3>
-                        <div class="form-group">
-                            <label for="char-class">Class:</label>
-                            <select id="char-class" required>
-                                <option value="">Select Class</option>
-                                <!-- Classes will be populated via JavaScript -->
-                            </select>
-                        </div>
-                        <div id="subclass-container" class="form-group hidden">
-                            <label for="char-subclass">Subclass:</label>
-                            <select id="char-subclass"></select>
-                        </div>
-                        <div class="form-group">
-                            <label for="char-level">Level:</label>
-                            <input type="number" id="char-level" min="1" max="20" value="1" required>
+                <div class="form-section">
+                    <h3>Background & Skills</h3>
+                    <div class="form-group">
+                        <label for="char-background">Background</label>
+                        <select id="char-background" required></select>
+                    </div>
+                    <div class="form-group">
+                        <h4>Skill Proficiencies</h4>
+                        <div id="skill-proficiencies" class="skill-grid">
+                            <!-- Populated by JavaScript -->
                         </div>
                     </div>
+                </div>
 
-                    <!-- Background -->
-                    <div class="form-section">
-                        <h3>Background</h3>
-                        <div class="form-group">
-                            <label for="char-background">Background:</label>
-                            <select id="char-background" required>
-                                <option value="">Select Background</option>
-                                <!-- Backgrounds will be populated via JavaScript -->
-                            </select>
-                        </div>
+                <div id="spells-section" class="form-section hidden">
+                    <h3>Spells</h3>
+                    <div class="spell-grid">
+                        <!-- Populated by JavaScript -->
                     </div>
+                </div>
+            </div>
 
-                    <!-- Equipment -->
-                    <div class="form-section">
-                        <h3>Equipment</h3>
-                        <div class="form-group">
-                            <label for="armor-select">Armor:</label>
-                            <select id="armor-select">
-                                <option value="">Select Armor</option>
-                                <!-- Armor options will be populated via JavaScript -->
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Weapons:</label>
-                            <div id="weapons-container">
-                                <button type="button" id="add-weapon" class="button secondary">Add Weapon</button>
-                            </div>
-                        </div>
+            <!-- Column 3: Equipment & Features -->
+            <div class="form-column">
+                <div class="form-section">
+                    <h3>Equipment</h3>
+                    <div class="form-group">
+                        <label for="armor-select">Armor</label>
+                        <select id="armor-select"></select>
                     </div>
+                    <div class="form-group">
+                        <label>Weapons</label>
+                        <div id="weapons-container" class="equipment-list">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                        <button type="button" id="add-weapon" class="button secondary">Add Weapon</button>
+                    </div>
+                </div>
 
-                    <!-- Spells (if spellcaster) -->
-                    <div id="spells-section" class="form-section hidden">
-                        <h3>Spells</h3>
-                        <div id="spell-slots">
-                            <!-- Spell slots will be populated based on class and level -->
-                        </div>
-                        <div id="spell-list">
-                            <!-- Available spells will be populated based on class -->
-                        </div>
+                <div class="form-section">
+                    <h3>Features & Traits</h3>
+                    <div id="features-container">
+                        <!-- Populated by JavaScript based on race/class selections -->
                     </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="button primary">Create Character</button>
-                        <button type="button" class="button secondary cancel-modal">Cancel</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script src="../js/simulator.js"></script>
-    <script src="../js/character-creation.js"></script>
-</body>
-</html>
+        <div class="modal-footer">
+            <button type="button" class="button secondary cancel-modal">Cancel</button>
+            <button type="submit" class="button primary" form="character-form">Create Character</button>
+        </div>
+    </div>
+</div>

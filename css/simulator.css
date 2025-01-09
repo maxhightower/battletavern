@@ -15,64 +15,71 @@
 .modal-content {
     background-color: white;
     border-radius: 10px;
-    width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
+    width: 95%;
+    height: 90vh;
+    max-width: 1400px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 .modal-header {
-    padding: 1.5rem;
+    padding: 1rem;
     border-bottom: 1px solid #ddd;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
     background: white;
-    z-index: 1;
+    border-radius: 10px 10px 0 0;
 }
 
 .modal-body {
     padding: 1.5rem;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
 }
 
-.modal-footer {
-    padding: 1.5rem;
-    border-top: 1px solid #ddd;
+.form-column {
     display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    position: sticky;
-    bottom: 0;
-    background: white;
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--secondary-color);
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .form-section {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
     background: #f8f9fa;
     border-radius: 8px;
+    padding: 1rem;
 }
 
 .form-section h3 {
-    margin-bottom: 1rem;
     color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
 }
 
 .ability-scores-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.ability-score-box {
+    background: white;
+    padding: 0.75rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.ability-score-box label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.ability-score-box input {
+    width: 4rem;
+    text-align: center;
 }
 
 .modifier {
@@ -81,81 +88,82 @@
     color: var(--secondary-color);
 }
 
-#weapons-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.form-group {
+    margin-bottom: 0.75rem;
 }
 
-.weapon-entry {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0.5rem;
-    align-items: center;
+.form-group label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
 }
 
-#spell-slots {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.spell-level {
-    padding: 1rem;
-    background: white;
-    border-radius: 4px;
-    text-align: center;
-}
-
-#spell-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-.spell-card {
+.form-group input,
+.form-group select {
+    width: 100%;
     padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.modal-footer {
+    padding: 1rem;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
     background: white;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Spell Selection Styles */
+.spell-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+}
+
+.spell-item {
+    background: white;
+    padding: 0.5rem;
     border-radius: 4px;
     border: 1px solid #ddd;
 }
 
-.hidden {
-    display: none;
+/* Equipment Selection Styles */
+.equipment-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+}
+
+.equipment-item {
+    background: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 /* Character Card Styles */
 .character-card {
     background: white;
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 1rem;
     margin-bottom: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.character-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
+@media (max-width: 1200px) {
+    .modal-body {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.character-card-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-}
-
-.character-stat {
-    text-align: center;
-    padding: 0.5rem;
-    background: #f8f9fa;
-    border-radius: 4px;
-}
-
-.character-actions {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
+@media (max-width: 768px) {
+    .modal-body {
+        grid-template-columns: 1fr;
+    }
 }
